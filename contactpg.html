@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./personal.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet"> <!-- Font Awesome -->
+    <title>Mariya Biju</title>
+    <style>
+        .spacer {
+            height: 200px; /* Adjust the height as needed */
+            display: flex;
+            align-items: center;
+            background-color: orangered;
+            padding: 20px;
+        }
+        .contact-container {
+            display: flex;
+            flex-direction: column; /* Arrange boxes in a column */
+            align-items: center; /* Center boxes */
+            padding: 20px;
+        }
+        .contact-box {
+            border: 1px solid #ddd;
+            padding: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-radius: 8px;
+            margin: 10px 0; /* Margin for spacing between boxes */
+            background-color: black;
+            width: 200px; /* Initial width */
+            overflow: hidden; /* Hide overflow for the expanding effect */
+            position: relative; /* Position relative for absolute positioning of arrow */
+        }
+        
+        .contact-box:hover {
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .contact-box i {
+            font-size: 50px;
+            margin-bottom: 10px;
+            color: #007bff;
+            background-color: black;
+        }
+
+        .contact-info {
+            display: none; /* Hide contact info initially */
+            margin-top: 10px;
+            font-size: 20px;
+        }
+
+        .expand-arrow {
+            position: absolute; /* Position arrow at the right side */
+            right: 10px;
+            top: 20px; /* Align arrow vertically */
+            cursor: pointer;
+            font-size: 24px;
+            transition: transform 0.3s; /* Transition for the arrow */
+        }
+
+        /* Media Queries for smaller screens */
+        @media (max-width: 768px) {
+            .spacer {
+                height: 150px; /* Reduce spacer height on smaller screens */
+                padding: 10px;
+            }
+            .contact-box {
+                width: 90%; /* Make the boxes full-width on smaller screens */
+            }
+            .contact-container {
+                padding: 10px; /* Reduce padding */
+            }
+        }
+    </style>
+</head>
+<body style="background-color: black;">
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-black">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"   
+     aria-controls="navbarNav" aria-expanded="false"   
+     aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item me-3">
+              <a class="nav-link active" aria-current="page" href="personal.html">Home</a>
+            </li>
+            <li class="nav-item me-3">
+              <a class="nav-link" href="aboutme.html">About Me</a>
+            </li>
+            <li class="nav-item me-3">
+              <a class="nav-link" href="blog.html">Blog</a>
+            </li>
+            <li class="nav-item me-3">
+              <a class="nav-link" href="#">Works</a>
+            </li>
+            <li class="nav-item me-3">
+              <a class="nav-link" href="contactpg.html">Contact Me</a>
+            </li>
+            <li class="nav-item me-3">
+              <a class="nav-link" href="enquiryform.html">Enquiry</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    <!-- Spacer Div -->
+    <div class="spacer">
+        <p>Contact Me</p>
+    </div>
+    <!-- Contact Me Section -->
+    <div class="container contact-container">
+        <!-- Phone Box -->
+        <div class="contact-box" id="phone-box">
+            <i class="fas fa-phone-alt"></i>
+            <h4>Phone</h4>
+            <div class="contact-info" id="phone-info">
+                <a href="tel:+9778190946">+91 9778190946</a>
+            </div>
+            <div class="expand-arrow" onclick="toggleInfo('phone-box')">&#x25B6;</div> <!-- Arrow -->
+        </div>
+
+        <!-- Email Box -->
+        <div class="contact-box" id="email-box">
+            <i class="fas fa-envelope"></i>
+            <h4>Email</h4>
+            <div class="contact-info" id="email-info">
+                <a href="mailto:mariyabijut@gmail.com">mariyabijut@gmail.com</a>
+            </div>
+            <div class="expand-arrow" onclick="toggleInfo('email-box')">&#x25B6;</div> <!-- Arrow -->
+        </div>
+
+        <!-- LinkedIn Box -->
+        <div class="contact-box" id="linkedin-box">
+            <i class="fab fa-linkedin"></i>
+            <h4>LinkedIn</h4>
+            <div class="contact-info" id="linkedin-info">
+                <a href="" target="_blank">LinkedIn Profile</a>
+            </div>
+            <div class="expand-arrow" onclick="toggleInfo('linkedin-box')">&#x25B6;</div> <!-- Arrow -->
+        </div>
+        <div class="container mt-4 text-center">
+            <button id="prevBtn" class="btn btn-primary">Previous</button>
+            <button id="nextBtn" class="btn btn-primary">Next</button>
+        </div>
+    </div>
+    
+
+    <!-- JavaScript to toggle visibility of contact info -->
+    <script>
+        // Function to show contact info
+        function toggleInfo(boxId) {
+            const box = document.getElementById(boxId);
+            const info = box.querySelector('.contact-info');
+            const arrow = box.querySelector('.expand-arrow');
+
+            // Toggle contact info visibility
+            if (info.style.display === 'block') {
+                info.style.display = 'none';
+                box.style.width = '200px'; // Reset width
+                arrow.style.transform = 'rotate(0deg)'; // Rotate arrow back
+            } else {
+                info.style.display = 'block';
+                box.style.width = '700px'; // Increase width
+                box.style.height='600px';
+                arrow.style.transform = 'rotate(90deg)'; // Rotate arrow to indicate expanded state
+            }
+        }
+    </script>
+    <script src="personal.js"></script> 
+</body>
+</html>

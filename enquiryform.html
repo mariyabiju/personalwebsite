@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./personal.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Optional Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <title>Mariya Biju</title>
+</head>
+<style>
+    /* Styles for the body and background */
+    body {
+        background-color: black;
+    }
+    
+    /* Styling for the main container of the form */
+    .container {
+        max-width: 600px;
+        margin: 0 auto;
+        background-color: #fff;
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    }
+    
+    /* Styles for form group (label and input) */
+    .form-group {
+        margin-bottom: 15px;
+    }
+
+    .form-group label {
+        display: block;
+        margin-bottom: 5px;
+    }
+
+    /* Styles for the input fields and text area */
+    .form-group input,
+    .form-group textarea {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+    }
+
+    /* Highlight input fields with error in red */
+    .form-group input.error,
+    .form-group textarea.error {
+        border-color: red;
+    }
+
+    /* Error message style (initially hidden) */
+    .form-group span.error-message {
+        color: red;
+        font-size: 14px;
+        display: none;
+    }
+
+    /* Style for submit button */
+    .submit-btn {
+        display: block;
+        width: 100%;
+        padding: 10px;
+        background-color: orangered;
+        border: none;
+        color: white;
+        border-radius: 5px;
+        font-size: 16px;
+        cursor: pointer;
+    }
+
+    /* Hover effect for submit button */
+    .submit-btn:hover {
+        background-color: darkorange;
+    }
+
+    /* Success message style (initially hidden) */
+    .success-message {
+        color: green;
+        text-align: center;
+        font-size: 18px;
+        display: none;
+    }
+
+    /* Error message style for form submission errors */
+    .error-message {
+        color: red;
+        text-align: center;
+        font-size: 18px;
+        display: none;
+    }
+</style>
+</head>
+<body>
+    <!-- Navbar setup with links -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-black">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <!-- Navigation links -->
+                <li class="nav-item me-3">
+                    <a class="nav-link active" aria-current="page" href="personal.html">Home</a>
+                </li>
+                <li class="nav-item me-3">
+                    <a class="nav-link" href="aboutme.html">About Me</a>
+                </li>
+                <li class="nav-item me-3">
+                    <a class="nav-link" href="blog.html">Blog</a>
+                </li>
+                <li class="nav-item me-3">
+                    <a class="nav-link" href="#">Works</a>
+                </li>
+                <li class="nav-item me-3">
+                    <a class="nav-link" href="contactpg.html">Contact Me</a>
+                </li>
+                <li class="nav-item me-3">
+                    <a class="nav-link" href="enquiryform.html">Enquiry</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    
+    <div class="spacer">
+        <p>Enquiry form</p>
+    </div>
+
+    <!-- Enquiry Form Container -->
+    <div class="container">   
+        <form id="enquiryForm">
+            <!-- Name Field -->
+            <div class="form-group">
+                <label for="name">Full Name:</label>
+                <input type="text" id="name" name="name" placeholder="Enter your name">
+                <span class="error-message" id="name-error">Please enter your name</span>
+            </div>
+
+            <!-- Email Field -->
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" placeholder="Enter your email">
+                <span class="error-message" id="email-error">Please enter a valid email address</span>
+            </div>
+
+            <!-- Phone Field -->
+            <div class="form-group">
+                <label for="phone">Phone:</label>
+                <input type="tel" id="phone" name="phone" placeholder="Enter your phone number">
+                <span class="error-message" id="phone-error">Please enter a valid phone number</span>
+            </div>
+
+            <!-- Message Field -->
+            <div class="form-group">
+                <label for="message">Message:</label>
+                <textarea id="message" name="message" rows="5" placeholder="Write your message here"></textarea>
+                <span class="error-message" id="message-error">Please enter your message</span>
+            </div>
+
+            <!-- Submit Button -->
+            <button type="submit" class="submit-btn">Submit Enquiry</button>
+        </form>
+
+        <!-- Success and Error Messages (Initially Hidden) -->
+        <div class="success-message" id="success-message">Your enquiry has been submitted successfully!</div>
+        <div class="error-message" id="submission-error">There was an error submitting your enquiry. Please try again later.</div>
+    </div>
+
+    <!-- Navigation for Previous and Next Buttons -->
+    <div class="container mt-4 text-center" style="background: inherit;">
+        <button id="prevBtn" class="btn btn-primary">Previous</button>
+        <button id="nextBtn" class="btn btn-primary">Next</button>
+    </div>
+
+    <!-- JavaScript for Form Validation and Submission Simulation -->
+    <script>
+        document.getElementById('enquiryForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent form submission
+            
+            // Form validation flag
+            let valid = true;
+            
+            // Grab input fields
+            const name = document.getElementById('name');
+            const email = document.getElementById('email');
+            const phone = document.getElementById('phone');
+            const message = document.getElementById('message');
+            
+            // Reset all errors before validation
+            document.querySelectorAll('.error-message').forEach(e => e.style.display = 'none');
+            document.querySelectorAll('.form-group input, .form-group textarea').forEach(e => e.classList.remove('error'));
+            
+            // Validate Name field
+            if (name.value.trim() === '') {
+                valid = false;
+                name.classList.add('error');
+                document.getElementById('name-error').style.display = 'block';
+            }
+            
+            // Validate Email field (basic regex pattern)
+            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailPattern.test(email.value.trim())) {
+                valid = false;
+                email.classList.add('error');
+                document.getElementById('email-error').style.display = 'block';
+            }
+
+            // Validate Phone field (basic 10-digit number)
+            const phonePattern = /^\d{10}$/;
+            if (!phonePattern.test(phone.value.trim())) {
+                valid = false;
+                phone.classList.add('error');
+                document.getElementById('phone-error').style.display = 'block';
+            }
+            
+            // Validate Message field
+            if (message.value.trim() === '') {
+                valid = false;
+                message.classList.add('error');
+                document.getElementById('message-error').style.display = 'block';
+            }
+            
+            if (valid) {
+                // If validation passes, show success message and reset form after 3 seconds
+                document.getElementById('success-message').style.display = 'block';
+                setTimeout(() => {
+                    document.getElementById('success-message').style.display = 'none';
+                    name.value = '';
+                    email.value = '';
+                    phone.value = '';
+                    message.value = '';
+                }, 3000);
+            } else {
+                // If validation fails, show submission error
+                document.getElementById('submission-error').style.display = 'block';
+                setTimeout(() => {
+                    document.getElementById('submission-error').style.display = 'none';
+                }, 3000);
+            }
+        });
+    </script>
+
+    <!-- External JavaScript File -->
+    <script src="personal.js"></script> 
+</body>
+
+</html>

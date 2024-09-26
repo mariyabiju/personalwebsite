@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./personal.css"/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Optional Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" defer></script>
+    <title>Mariya Biju</title>
+</head>
+<body style="background-color: orangered;">
+  <!-- Navbar with toggler for collapsing menu on small screens -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-black">
+    <!-- Button to toggle the navbar on smaller screens -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"   
+ aria-controls="navbarNav" aria-expanded="false"   
+ aria-label="Toggle navigation">
+      <!-- Icon for the toggler button -->
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <!-- Navbar content collapses here -->
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <!-- Navbar menu items aligned to the right (ms-auto) -->
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item me-3">
+          <a class="nav-link active" aria-current="page" href="personal.html">Home</a>
+        </li>
+        <li class="nav-item me-3">
+          <a class="nav-link" href="aboutme.html">About Me</a>
+        </li>
+        <li class="nav-item me-3">
+          <a class="nav-link" href="blog.html">Blog</a>
+        </li>
+        <li class="nav-item me-3">
+          <a class="nav-link" href="#">Works</a>
+        </li>
+        <li class="nav-item me-3">
+          <a class="nav-link" href="contactpg.html">Contact Me</a>
+        </li>
+        <li class="nav-item me-3">
+          <a class="nav-link" href="enquiryform.html">Enquiry</a>
+        </li>
+      </ul>
+    </div>
+</nav>
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-6 left-column"style="display: flex;align-items: center;justify-content: center;">
+              <img src="IMG_20240519_205202.jpg" alt="Profilepic" loading="lazy" style="width: 200px; height: 200px">
+            </div>
+            <div class="col-md-6 right-column">
+                <span style="font-size: 25px;font-weight: bold; color: black;">About Me</span><br>
+                <p class="about-me-content" style="font-size: 20px;">I am Mariya Biju, a self-learning devoloper ,working hard for specialising MERN Stack Development. I am really passionate about creating a bright future and constantly working to achieve goals.</p>
+                <div class="buttons-aboutmepg">
+                  <button class="button-aboutmepg" data-target="mydetails.html">Personal Details</button>
+                  <button class="button-aboutmepg" data-target="education.html">Education</button>
+                </div>
+                <div id="popup-screen" class="popup-screen">
+                  <iframe id="popup-content" src="mydetails.html"></iframe>
+                  <button id="close-button">Close</button>
+                </div>   
+            </div>  
+        </div>
+        <div class="container mt-4 text-center">
+          <button id="prevBtn" class="btn btn-primary">Previous</button>
+          <button id="nextBtn" class="btn btn-primary">Next</button>
+        </div>
+    </div>
+  <script defer>
+    // Get the popup and close button elements
+const popup = document.getElementById('popup-screen');
+const closeButton = document.getElementById('close-button');
+const buttons = document.querySelectorAll('.button-aboutmepg');
+const iframe = document.getElementById('popup-content');
+
+// Function to show the popup
+function showPopup(contentUrl) {
+    popup.style.display = 'block';
+    overlay.style.display = 'block';
+    iframe.src = contentUrl;
+}
+
+// Function to close the popup
+function closePopup() {
+    popup.style.display = 'none';
+    overlay.style.display = 'none';
+    iframe.src = '';  // Clear the iframe content
+}
+
+// Add event listeners to buttons
+buttons.forEach(button => {
+    button.addEventListener('click', function() {
+        const targetUrl = this.getAttribute('data-target'); // Get the URL for iframe
+        showPopup(targetUrl); // Open popup with content
+    });
+});
+
+// Close the popup when the close button is clicked
+closeButton.addEventListener('click', closePopup);
+
+// Close the popup when clicking outside the popup (on the overlay)
+overlay.addEventListener('click', closePopup);
+
+  </script>
+  <script src="personal.js" defer></script>
+</body>
+</html>
